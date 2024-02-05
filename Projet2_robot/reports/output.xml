@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-02-05T15:19:10.848830" rpa="false" schemaversion="5">
+<suite id="s1" name="Script" source="C:\Users\Administrateur\Documents\GitHub\Robot_frame\Projet2_robot\tests\script.robot">
+<test id="s1-t1" name="TC1 - login avec identifiants valide" line="13">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:11.036794" level="INFO">Opening browser 'chrome' to base url 'https://practice.expandtesting.com/login'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-05T15:19:11.036794" elapsed="2.427745"/>
+</kw>
+<kw name="saisir identifiants et connecter">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:13.466535" level="INFO">Typing text 'practice' into text field '//*[@id="username"]'.</msg>
+<arg>locator=//*[@id="username"]</arg>
+<arg>text=${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:13.465537" elapsed="0.142330"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:13.609435" level="INFO">Typing password into text field '//*[@id="password"]'.</msg>
+<msg time="2024-02-05T15:19:13.636816" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>locator=//*[@id="password"]</arg>
+<arg>password=${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:13.608892" elapsed="0.073801"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:13.683691" level="INFO">Clicking element '//*[@id="login"]/button'.</msg>
+<arg>//*[@id="login"]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:13.683691" elapsed="0.598409"/>
+</kw>
+<arg>${username1}</arg>
+<arg>${password1}</arg>
+<status status="PASS" start="2024-02-05T15:19:13.465537" elapsed="0.817563"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:14.299056" level="INFO">Current page contains element '//*[@id="flash"]'.</msg>
+<arg>locator=//*[@id="flash"]</arg>
+<arg>message=You logged into a secure area!</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2024-02-05T15:19:14.283100" elapsed="0.015956"/>
+</kw>
+<kw name="deconnexion">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:14.300052" level="INFO">Clicking element '//a[@href='/logout']'.</msg>
+<arg>//a[@href='/logout']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:14.300052" elapsed="0.563849"/>
+</kw>
+<status status="PASS" start="2024-02-05T15:19:14.300052" elapsed="0.563849"/>
+</kw>
+<kw name="Fermer navigateur">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-05T15:19:24.865339" level="INFO">Slept 10 seconds.</msg>
+<arg>${sleep}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-05T15:19:14.864902" elapsed="10.000437"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-05T15:19:24.866158" elapsed="2.208381"/>
+</kw>
+<arg>${sleep}</arg>
+<status status="PASS" start="2024-02-05T15:19:14.864902" elapsed="12.210266"/>
+</kw>
+<status status="PASS" start="2024-02-05T15:19:11.035773" elapsed="16.041405"/>
+</test>
+<test id="s1-t2" name="TC2 - identifiants invalide" line="20">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:27.083095" level="INFO">Opening browser 'chrome' to base url 'https://practice.expandtesting.com/login'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-05T15:19:27.082090" elapsed="2.242862"/>
+</kw>
+<kw name="saisir identifiants et connecter">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:29.327977" level="INFO">Typing text 'asspoei' into text field '//*[@id="username"]'.</msg>
+<arg>locator=//*[@id="username"]</arg>
+<arg>text=${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:29.326948" elapsed="0.107799"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:29.435701" level="INFO">Typing password into text field '//*[@id="password"]'.</msg>
+<msg time="2024-02-05T15:19:29.469942" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>locator=//*[@id="password"]</arg>
+<arg>password=${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:29.435701" elapsed="0.076931"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:29.512632" level="INFO">Clicking element '//*[@id="login"]/button'.</msg>
+<arg>//*[@id="login"]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:29.512632" elapsed="0.673425"/>
+</kw>
+<arg>${username2}</arg>
+<arg>${password2}</arg>
+<status status="PASS" start="2024-02-05T15:19:29.325950" elapsed="0.861104"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:30.219772" level="INFO">Current page contains element '//*[@id="flash"]'.</msg>
+<arg>locator=//*[@id="flash"]</arg>
+<arg>message=Your username is invalid!</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2024-02-05T15:19:30.189049" elapsed="0.030723"/>
+</kw>
+<kw name="Fermer navigateur">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-05T15:19:40.221058" level="INFO">Slept 10 seconds.</msg>
+<arg>${sleep}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-05T15:19:30.220770" elapsed="10.000701"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-05T15:19:40.221471" elapsed="2.214005"/>
+</kw>
+<arg>${sleep}</arg>
+<status status="PASS" start="2024-02-05T15:19:30.220770" elapsed="12.215291"/>
+</kw>
+<status status="PASS" start="2024-02-05T15:19:27.081378" elapsed="15.355680"/>
+</test>
+<test id="s1-t3" name="TC3 - identifiants invalide username invalide" line="27">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:42.443654" level="INFO">Opening browser 'chrome' to base url 'https://practice.expandtesting.com/login'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-05T15:19:42.443087" elapsed="2.159498"/>
+</kw>
+<kw name="saisir identifiants et connecter">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:44.603612" level="INFO">Typing text 'asspoei' into text field '//*[@id="username"]'.</msg>
+<arg>locator=//*[@id="username"]</arg>
+<arg>text=${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:44.602585" elapsed="0.106268"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:44.709850" level="INFO">Typing password into text field '//*[@id="password"]'.</msg>
+<msg time="2024-02-05T15:19:44.753016" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>locator=//*[@id="password"]</arg>
+<arg>password=${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:44.709850" elapsed="0.090810"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:44.800660" level="INFO">Clicking element '//*[@id="login"]/button'.</msg>
+<arg>//*[@id="login"]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:44.800660" elapsed="0.630095"/>
+</kw>
+<arg>${username2}</arg>
+<arg>${password1}</arg>
+<status status="PASS" start="2024-02-05T15:19:44.602585" elapsed="0.828913"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:45.441725" level="INFO">Current page contains element '//*[@id="flash"]'.</msg>
+<arg>locator=//*[@id="flash"]</arg>
+<arg>message=Your username is invalid!</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2024-02-05T15:19:45.431752" elapsed="0.009973"/>
+</kw>
+<kw name="Fermer navigateur">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-05T15:19:55.443001" level="INFO">Slept 10 seconds.</msg>
+<arg>${sleep}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-05T15:19:45.442721" elapsed="10.000280"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-05T15:19:55.443001" elapsed="2.199111"/>
+</kw>
+<arg>${sleep}</arg>
+<status status="PASS" start="2024-02-05T15:19:45.442721" elapsed="12.199391"/>
+</kw>
+<status status="PASS" start="2024-02-05T15:19:42.441452" elapsed="15.202317"/>
+</test>
+<test id="s1-t4" name="TC4 - identifiants invalide password invalide" line="33">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:57.647771" level="INFO">Opening browser 'chrome' to base url 'https://practice.expandtesting.com/login'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-05T15:19:57.647771" elapsed="2.191536"/>
+</kw>
+<kw name="saisir identifiants et connecter">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:59.840305" level="INFO">Typing text 'practice' into text field '//*[@id="username"]'.</msg>
+<arg>locator=//*[@id="username"]</arg>
+<arg>text=${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:59.840305" elapsed="0.115679"/>
+</kw>
+<kw name="Input Password" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:19:59.957062" level="INFO">Typing password into text field '//*[@id="password"]'.</msg>
+<msg time="2024-02-05T15:19:59.998867" level="INFO">Temporally setting log level to: NONE</msg>
+<arg>locator=//*[@id="password"]</arg>
+<arg>password=${password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:19:59.957062" elapsed="0.152825"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:20:00.110889" level="INFO">Clicking element '//*[@id="login"]/button'.</msg>
+<arg>//*[@id="login"]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-05T15:20:00.110889" elapsed="0.658679"/>
+</kw>
+<arg>${username1}</arg>
+<arg>${password2}</arg>
+<status status="PASS" start="2024-02-05T15:19:59.839307" elapsed="0.930261"/>
+</kw>
+<kw name="Page Should Contain Element" owner="SeleniumLibrary">
+<msg time="2024-02-05T15:20:00.781537" level="INFO">Current page contains element '//*[@id="flash"]'.</msg>
+<arg>locator=//*[@id="flash"]</arg>
+<arg>message=Your username is invalid!</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<status status="PASS" start="2024-02-05T15:20:00.770119" elapsed="0.011418"/>
+</kw>
+<kw name="Fermer navigateur">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-05T15:20:10.784332" level="INFO">Slept 10 seconds.</msg>
+<arg>${sleep}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-05T15:20:00.782543" elapsed="10.001789"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-05T15:20:10.784332" elapsed="2.226760"/>
+</kw>
+<arg>${sleep}</arg>
+<status status="PASS" start="2024-02-05T15:20:00.782543" elapsed="12.228549"/>
+</kw>
+<status status="PASS" start="2024-02-05T15:19:57.645794" elapsed="15.366264"/>
+</test>
+<status status="PASS" start="2024-02-05T15:19:10.849835" elapsed="62.164216"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Script">Script</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

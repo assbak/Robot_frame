@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-02-06T17:02:00.565521" rpa="false" schemaversion="5">
+<suite id="s1" name="Vente" source="C:\Users\Administrateur\Documents\GitHub\Robot_frame\projetp2\tests\vente.robot">
+<test id="s1-t1" name="TC1 - verification du lien" line="13">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:00.823712" level="INFO">Opening browser 'edge' to base url 'https://weathershopper.pythonanywhere.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-06T17:02:00.822650" elapsed="3.964875"/>
+</kw>
+<kw name="Fermer navigateur">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-06T17:02:24.789505" level="INFO">Slept 20 seconds.</msg>
+<arg>${sleep}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-06T17:02:04.788522" elapsed="20.000983"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-06T17:02:24.790084" elapsed="2.272526"/>
+</kw>
+<arg>${sleep}</arg>
+<status status="PASS" start="2024-02-06T17:02:04.787525" elapsed="22.275085"/>
+</kw>
+<status status="PASS" start="2024-02-06T17:02:00.822650" elapsed="26.241640"/>
+</test>
+<test id="s1-t2" name="TC2 - Bout en bout achat de produit" line="17">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:27.068318" level="INFO">Opening browser 'edge' to base url 'https://weathershopper.pythonanywhere.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-06T17:02:27.067346" elapsed="4.120175"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:31.189475" level="INFO">Clicking element '//a[@href="/moisturizer"]'.</msg>
+<arg>//a[@href="/moisturizer"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:31.189394" elapsed="0.980516"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:32.190540" level="INFO">Current page contains text 'Moisturizers'.</msg>
+<arg>text=Moisturizers</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-02-06T17:02:32.170908" elapsed="0.019632"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:32.191562" level="INFO">Clicking element 'xpath:/html/body/div[1]/div[3]/div[2]/button'.</msg>
+<arg>xpath:/html/body/div[1]/div[3]/div[2]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:32.191562" elapsed="0.062673"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:32.255232" level="INFO">Clicking element 'xpath:/html/body/div[1]/div[2]/div[1]/button'.</msg>
+<arg>xpath:/html/body/div[1]/div[2]/div[1]/button</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:32.255232" elapsed="0.038698"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:32.293930" level="INFO">Clicking element '//*[@id="cart"]'.</msg>
+<arg>//*[@id="cart"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:32.293930" elapsed="0.159375"/>
+</kw>
+<kw name="verification du montant">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:33.164252" level="INFO">${amount1} = 128</msg>
+<var>${amount1}</var>
+<arg>xpath:/html/body/div[1]/div[2]/table/tbody/tr[1]/td[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:32.455454" elapsed="0.708798"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:33.181588" level="INFO">${amount2} = 353</msg>
+<var>${amount2}</var>
+<arg>xpath:/html/body/div[1]/div[2]/table/tbody/tr[2]/td[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.165277" elapsed="0.016311"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-02-06T17:02:33.182585" level="INFO">${number1} = 128.0</msg>
+<var>${number1}</var>
+<arg>${amount1}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.181588" elapsed="0.000997"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-02-06T17:02:33.182585" level="INFO">${number2} = 353.0</msg>
+<var>${number2}</var>
+<arg>${amount2}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.182585" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-06T17:02:33.182585" level="INFO">${sum} = 481.0</msg>
+<var>${sum}</var>
+<arg>${number1} + ${number2}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.182585" elapsed="0.000997"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:33.199397" level="INFO">${total_text} = Total: Rupees 481</msg>
+<var>${total_text}</var>
+<arg>css=.justify-content-center.h4.top-space-20#total</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.183582" elapsed="0.015815"/>
+</kw>
+<kw name="Fetch From Right" owner="String">
+<msg time="2024-02-06T17:02:33.199397" level="INFO">${total_number} =  481</msg>
+<var>${total_number}</var>
+<arg>${total_text}</arg>
+<arg>Rupees</arg>
+<doc>Returns contents of the ``string`` after the last occurrence of ``marker``.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.199397" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2024-02-06T17:02:33.200418" level="INFO">${total_number} = 481.0</msg>
+<var>${total_number}</var>
+<arg>${total_number}</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.199397" elapsed="0.001021"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${sum}</arg>
+<arg>${total_number}</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.200418" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-02-06T17:02:32.454502" elapsed="0.745916"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:33.201396" level="INFO">Clicking element 'xpath:/html/body/div[1]/div[3]/form/button/span'.</msg>
+<arg>xpath:/html/body/div[1]/div[3]/form/button/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.201396" elapsed="0.043126"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//iframe[contains(@src, 'https://checkout.stripe.com/v3/oivkx0oP8BgueCG8QFpDfA.html')]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.249345" elapsed="0.065200"/>
+</kw>
+<kw name="Select Frame" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:33.317518" level="INFO">Selecting frame 'xpath=//iframe[contains(@src, 'https://checkout.stripe.com/v3/oivkx0oP8BgueCG8QFpDfA.html')]'.</msg>
+<arg>xpath=//iframe[contains(@src, 'https://checkout.stripe.com/v3/oivkx0oP8BgueCG8QFpDfA.html')]</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.317518" elapsed="0.041362"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//*[@id="email"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.359878" elapsed="0.523715"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:33.884590" level="INFO">Typing text 'test@test.com' into text field 'xpath=//*[@id="email"]'.</msg>
+<arg>xpath=//*[@id="email"]</arg>
+<arg>${email_address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:33.883593" elapsed="0.164168"/>
+</kw>
+<kw name="carte number">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-02-06T17:02:34.048759" level="INFO">${card_number} = 4242 4242 4242 4242</msg>
+<var>${card_number}</var>
+<arg>4242 4242 4242 4242</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.048759" elapsed="0.000273"/>
+</kw>
+<for flavor="IN RANGE">
+<iter>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.049770" level="INFO">Typing text '4242' into text field '//*[@id="card_number"]'.</msg>
+<arg>locator=//*[@id="card_number"]</arg>
+<arg>text=4242</arg>
+<arg>clear=${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.049032" elapsed="0.075362"/>
+</kw>
+<var name="${i}">0</var>
+<status status="PASS" start="2024-02-06T17:02:34.049032" elapsed="0.076425"/>
+</iter>
+<iter>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.126388" level="INFO">Typing text '4242' into text field '//*[@id="card_number"]'.</msg>
+<arg>locator=//*[@id="card_number"]</arg>
+<arg>text=4242</arg>
+<arg>clear=${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.125457" elapsed="0.052944"/>
+</kw>
+<var name="${i}">1</var>
+<status status="PASS" start="2024-02-06T17:02:34.125457" elapsed="0.053942"/>
+</iter>
+<iter>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.180396" level="INFO">Typing text '4242' into text field '//*[@id="card_number"]'.</msg>
+<arg>locator=//*[@id="card_number"]</arg>
+<arg>text=4242</arg>
+<arg>clear=${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.180396" elapsed="0.103789"/>
+</kw>
+<var name="${i}">2</var>
+<status status="PASS" start="2024-02-06T17:02:34.179399" elapsed="0.104786"/>
+</iter>
+<iter>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.286469" level="INFO">Typing text '4242' into text field '//*[@id="card_number"]'.</msg>
+<arg>locator=//*[@id="card_number"]</arg>
+<arg>text=4242</arg>
+<arg>clear=${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.284185" elapsed="0.218438"/>
+</kw>
+<var name="${i}">3</var>
+<status status="PASS" start="2024-02-06T17:02:34.284185" elapsed="0.219419"/>
+</iter>
+<var>${i}</var>
+<value>4</value>
+<status status="PASS" start="2024-02-06T17:02:34.049032" elapsed="0.454572"/>
+</for>
+<status status="PASS" start="2024-02-06T17:02:34.047995" elapsed="0.455609"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.504636" level="INFO">Typing text '123' into text field '//*[@id="cc-csc"]'.</msg>
+<arg>locator=//*[@id="cc-csc"]</arg>
+<arg>text=123</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.504636" elapsed="0.142270"/>
+</kw>
+<kw name="date expiration">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.649060" level="INFO">Typing text '11' into text field 'id=cc-exp'.</msg>
+<arg>id=cc-exp</arg>
+<arg>${month}</arg>
+<arg>clear=${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.648599" elapsed="0.165642"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.816237" level="INFO">Typing text '27' into text field 'id=cc-exp'.</msg>
+<arg>id=cc-exp</arg>
+<arg>${year}</arg>
+<arg>clear=${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.814241" elapsed="0.077071"/>
+</kw>
+<status status="PASS" start="2024-02-06T17:02:34.647903" elapsed="0.244419"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:34.893357" level="INFO">Typing text '12345' into text field '//*[@id="billing-zip"]'.</msg>
+<arg>locator=//*[@id="billing-zip"]</arg>
+<arg>text=12345</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:34.892322" elapsed="0.159098"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:35.071956" level="INFO">Clicking element '//*[@id="submitButton"]/span/span'.</msg>
+<arg>//*[@id="submitButton"]/span/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-06T17:02:35.070644" elapsed="0.755513"/>
+</kw>
+<kw name="Unselect Frame" owner="SeleniumLibrary">
+<doc>Sets the main frame as the current frame.</doc>
+<status status="PASS" start="2024-02-06T17:02:35.826623" elapsed="0.009027"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-06T17:02:45.839120" level="INFO">Slept 10 seconds.</msg>
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-06T17:02:35.838630" elapsed="10.000490"/>
+</kw>
+<kw name="verifier">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>locator=${path}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-06T17:02:45.841000" elapsed="0.025655"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-02-06T17:02:45.878535" level="INFO">Current page contains text 'PAYMENT SUCCESS'.</msg>
+<arg>text=${message}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-02-06T17:02:45.867566" elapsed="0.010969"/>
+</kw>
+<arg>xpath=/html/body/div[1]/div[1]/h2</arg>
+<arg>PAYMENT SUCCESS</arg>
+<status status="PASS" start="2024-02-06T17:02:45.840003" elapsed="0.038532"/>
+</kw>
+<kw name="Fermer navigateur">
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-02-06T17:03:05.879956" level="INFO">Slept 20 seconds.</msg>
+<arg>${sleep}</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-02-06T17:02:45.879532" elapsed="20.000424"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-06T17:03:05.879956" elapsed="2.259387"/>
+</kw>
+<arg>${sleep}</arg>
+<status status="PASS" start="2024-02-06T17:02:45.878535" elapsed="22.260808"/>
+</kw>
+<status status="PASS" start="2024-02-06T17:02:27.066283" elapsed="41.073967"/>
+</test>
+<status status="PASS" start="2024-02-06T17:02:00.567515" elapsed="67.573734"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Vente">Vente</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

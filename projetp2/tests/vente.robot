@@ -3,21 +3,28 @@ Library    SeleniumLibrary
 Library    String
 *** Variables ***
 ${URL}            https://weathershopper.pythonanywhere.com/
-${Browser}            edge
+${Browser}            chrome
 ${month}          11
 ${year}           27
 ${expiration_date}    1127
 ${email_address}    test@test.com
 ${sleep}          20s
+${task_path}    xpath://span[contains(@class, 'octicon-info') and @data-toggle='popover']
 *** Test Cases ***
 TC1 - verification du lien
     Open Browser    ${URL}    ${Browser}
+    Click Element    xpath:/html/body/div[1]/div[1]/span
+    Sleep    5s
+    verifier    ${task_path}    Your task
+    temperature and task
     Fermer navigateur    ${sleep}
 
 TC2 - Bout en bout achat de produit
     Open Browser    ${URL}    ${Browser}
-    Click Element    //a[@href="/moisturizer"]
-    Page Should Contain    text=Moisturizers
+    Click Element    xpath:/html/body/div[1]/div[1]/span
+    Sleep    5s
+    verifier    ${task_path}    Your task
+    temperature and task
     Click Element    xpath:/html/body/div[1]/div[3]/div[2]/button
     Click Element    xpath:/html/body/div[1]/div[2]/div[1]/button
     Click Element    //*[@id="cart"]
@@ -35,9 +42,9 @@ TC2 - Bout en bout achat de produit
     #Input Text    locator=//*[@id="card_number"]    text=4242 4242 4242 4242
   # Define the card number and the delay between each character
     carte number
+    Sleep    5s
     Input Text    locator=//*[@id="cc-csc"]    text=123
     date expiration
-
     Input Text    locator=//*[@id="billing-zip"]    text=12345
     Click Element    //*[@id="submitButton"]/span/span
     Unselect Frame
@@ -45,6 +52,20 @@ TC2 - Bout en bout achat de produit
     verifier    xpath=/html/body/div[1]/div[1]/h2    PAYMENT SUCCESS
     Fermer navigateur    ${sleep}
 *** Keywords ***
+temperature and task
+    ${temperature_text}=    Get Text    //*[@id="temperature"]
+    ${cleaned_text}=    Get Substring    ${temperature_text}     0    2
+    Log    le nombre est ${temperature_text} et est devenu ${cleaned_text}
+    ${temperature_number}=    Convert To Number    ${cleaned_text}
+    IF    ${temperature_number} <19
+        Click Element    //a[@href="/moisturizer"]
+        Page Should Contain    text=Moisturizers
+    ELSE IF    ${temperature_number} >34
+        Click Element    //a[@href="/sunscreen"]
+        Page Should Contain    text=Sunscreens
+    END
+    
+    
 verifier
     [Arguments]    ${path}    ${message}
     Wait Until Element Is Visible    locator=${path}    timeout=10s
@@ -71,11 +92,10 @@ verification du montant
     ${total_number} =    Convert To Number    ${total_number}
     Should Be Equal As Numbers    ${sum}    ${total_number}
 carte number
-    ${card_number} =    Set Variable    4242 4242 4242 4242
-
-    
+    #${card_number} =    Set Variable    4242 4242 4242 4242
     FOR    ${i}    IN RANGE    4 
         Input Text    locator=//*[@id="card_number"]    text=4242    clear=${False}
+        Sleep    2s
     END
 date expiration
     Input Text    id=cc-exp    ${month}    clear=${False}

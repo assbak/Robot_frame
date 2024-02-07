@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.12.1 on win32)" generated="2024-02-07T16:00:40.020610" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Bout En Bout" source="C:\Users\Administrateur\Documents\GitHub\Robot_frame\Weather_Shopper_Export\tests\test_bout_en_bout.robot">
+<test id="s1-t1" name="TC1 - Test de bout en bout achat des 2 produits les moins chers" line="24">
+<kw name="Setup Test" owner="common">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:40.250756" level="INFO">Opening browser 'Edge' to base url 'https://weathershopper.pythonanywhere.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-07T16:00:40.250756" elapsed="4.049377"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-02-07T16:00:44.300133" elapsed="0.128740"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:40.249758" elapsed="4.179745"/>
+</kw>
+<kw name="Go To Product Page" owner="page_accueil">
+<kw name="Get temperature" owner="page_accueil">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:44.473850" level="INFO">${T} = 7 ℃</msg>
+<var>${T}</var>
+<arg>${Temperature}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:44.430897" elapsed="0.042953"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:44.474847" level="INFO">@{T} = [ 7 | ℃ ]</msg>
+<var>@{T}</var>
+<arg>${T}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:44.474847" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${T}[0]</value>
+<status status="PASS" start="2024-02-07T16:00:44.474847" elapsed="0.000000"/>
+</return>
+<msg time="2024-02-07T16:00:44.475893" level="INFO">${T} = 7</msg>
+<var>${T}</var>
+<status status="PASS" start="2024-02-07T16:00:44.429869" elapsed="0.046024"/>
+</kw>
+<if>
+<branch type="IF" condition="${T} &lt; 19">
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-02-07T16:00:44.477877" level="INFO">@{produit} = [ ALOE | ALMOND ]</msg>
+<var>@{produit}</var>
+<arg>ALOE</arg>
+<arg>ALMOND</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-02-07T16:00:44.476842" elapsed="0.001035"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:44.478840" level="INFO">Clicking element 'xpath://button[text()='Buy moisturizers']'.</msg>
+<arg>${Moisturizer_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:44.478518" elapsed="0.670778"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:44.475893" elapsed="0.673403"/>
+</branch>
+<branch type="ELSE IF" condition="${T} &gt; 34">
+<kw name="Create List" owner="BuiltIn">
+<var>@{produit}</var>
+<arg>SPF-30</arg>
+<arg>SPF-50</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" start="2024-02-07T16:00:45.149296" elapsed="0.000000"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${Sunscreen_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-02-07T16:00:45.149296" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-02-07T16:00:45.149296" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-02-07T16:00:44.475893" elapsed="0.673403"/>
+</if>
+<return>
+<value>@{produit}</value>
+<status status="PASS" start="2024-02-07T16:00:45.149296" elapsed="0.000000"/>
+</return>
+<msg time="2024-02-07T16:00:45.149296" level="INFO">@{produit} = [ ALOE | ALMOND ]</msg>
+<var>@{produit}</var>
+<status status="PASS" start="2024-02-07T16:00:44.429869" elapsed="0.720450"/>
+</kw>
+<kw name="Add Least Expensive Product" owner="page_produits">
+<for flavor="IN">
+<iter>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-02-07T16:00:45.151313" level="INFO">${Liste_prix} = []</msg>
+<var>${Liste_prix}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.151313" elapsed="0.000000"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.162792" level="INFO">@{Liste_WE} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_21")&gt; | &lt;selenium.webdriver.remote.webelement.WebEleme...</msg>
+<var>@{Liste_WE}</var>
+<arg>//p[contains(translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'), '${i}')]/following-sibling::p</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.151313" elapsed="0.011479"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.170939" level="INFO">${prix} = Price: Rs. 215</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.162961" elapsed="0.007978"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:45.170939" level="INFO">${prix} = ['Price:', 'Rs.', '215']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.170939" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.170939" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_21")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:45.162961" elapsed="0.007978"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.179794" level="INFO">${prix} = Price: 365</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.171936" elapsed="0.007858"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:45.179794" level="INFO">${prix} = ['Price:', '365']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.179794" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.179794" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_22")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:45.171936" elapsed="0.007858"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.187934" level="INFO">${prix} = Price: 199</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.180817" elapsed="0.007117"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:45.188209" level="INFO">${prix} = ['Price:', '199']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.187934" elapsed="0.000275"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.188209" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_23")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:45.179794" elapsed="0.008415"/>
+</iter>
+<var>${we}</var>
+<value>@{Liste_WE}</value>
+<status status="PASS" start="2024-02-07T16:00:45.162961" elapsed="0.025248"/>
+</for>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:45.188927" level="INFO">${prix_min} = 199</msg>
+<var>${prix_min}</var>
+<arg>min(${Liste_prix})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.188209" elapsed="0.000718"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.188927" level="INFO">Clicking element '//button[contains(@onclick, 199)]'.</msg>
+<arg>//button[contains(@onclick, ${prix_min})]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.188927" elapsed="0.034083"/>
+</kw>
+<var name="${i}">ALOE</var>
+<status status="PASS" start="2024-02-07T16:00:45.150431" elapsed="0.072579"/>
+</iter>
+<iter>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-02-07T16:00:45.224007" level="INFO">${Liste_prix} = []</msg>
+<var>${Liste_prix}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.224007" elapsed="0.000000"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.237182" level="INFO">@{Liste_WE} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_25")&gt; | &lt;selenium.webdriver.remote.webelement.WebEleme...</msg>
+<var>@{Liste_WE}</var>
+<arg>//p[contains(translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'), '${i}')]/following-sibling::p</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.224007" elapsed="0.013175"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.244104" level="INFO">${prix} = Price: Rs. 360</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.237182" elapsed="0.006922"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:45.244104" level="INFO">${prix} = ['Price:', 'Rs.', '360']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.244104" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.245126" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_25")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:45.237182" elapsed="0.007944"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.251100" level="INFO">${prix} = Price: Rs. 195</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.245126" elapsed="0.005974"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:45.251100" level="INFO">${prix} = ['Price:', 'Rs.', '195']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.251100" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.251100" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_26")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:45.245126" elapsed="0.005974"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.257097" level="INFO">${prix} = Price: 220</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.251100" elapsed="0.005997"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:45.257097" level="INFO">${prix} = ['Price:', '220']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.257097" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.257097" elapsed="0.001017"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="67915b6360705fc13d678174e60c3320", element="95B054653861FD8E2F27FBF7D0236715_element_27")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:45.251100" elapsed="0.007310"/>
+</iter>
+<var>${we}</var>
+<value>@{Liste_WE}</value>
+<status status="PASS" start="2024-02-07T16:00:45.237182" elapsed="0.021228"/>
+</for>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:45.258410" level="INFO">${prix_min} = 195</msg>
+<var>${prix_min}</var>
+<arg>min(${Liste_prix})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.258410" elapsed="0.000684"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.259094" level="INFO">Clicking element '//button[contains(@onclick, 195)]'.</msg>
+<arg>//button[contains(@onclick, ${prix_min})]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.259094" elapsed="0.028712"/>
+</kw>
+<var name="${i}">ALMOND</var>
+<status status="PASS" start="2024-02-07T16:00:45.224007" elapsed="0.063799"/>
+</iter>
+<var>${i}</var>
+<value>@{produits}</value>
+<status status="PASS" start="2024-02-07T16:00:45.150431" elapsed="0.137375"/>
+</for>
+<arg>@{produit}</arg>
+<status status="PASS" start="2024-02-07T16:00:45.150431" elapsed="0.137375"/>
+</kw>
+<kw name="Click Cart Button" owner="page_produits">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:45.288802" level="INFO">Clicking element 'xpath://button[contains(@onclick, 'goToCart()')]'.</msg>
+<arg>${Cart_BTN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.288802" elapsed="0.161441"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:45.288802" elapsed="0.161441"/>
+</kw>
+<kw name="Click Pay With Card" owner="page_panier">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Pay_With_Card}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-07T16:00:45.451240" elapsed="1.004947"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:46.456187" level="INFO">Clicking element 'xpath://span[contains(text(), 'Pay with Card')]'.</msg>
+<arg>${Pay_With_Card}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.456187" elapsed="0.034840"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:45.451240" elapsed="1.040784"/>
+</kw>
+<kw name="Verify Total" owner="page_panier">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:46.508294" level="INFO">${Prix1} = 199</msg>
+<var>${Prix1}</var>
+<arg>${Price_P1}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.492024" elapsed="0.016270"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2024-02-07T16:00:46.508294" level="INFO">${Prix1} = 199</msg>
+<var>${Prix1}</var>
+<arg>${Prix1}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.508294" elapsed="0.000000"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:46.525172" level="INFO">${Prix2} = 195</msg>
+<var>${Prix2}</var>
+<arg>${Price_P2}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.509027" elapsed="0.016145"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2024-02-07T16:00:46.525949" level="INFO">${Prix2} = 195</msg>
+<var>${Prix2}</var>
+<arg>${Prix2}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.525949" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:46.526950" level="INFO">${T} = 394</msg>
+<var>${T}</var>
+<arg>${Prix1}+${Prix2}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.525949" elapsed="0.001001"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:46.542902" level="INFO">${Total_} = Total: Rupees 394</msg>
+<var>${Total_}</var>
+<arg>${Total}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.526950" elapsed="0.015952"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:46.543900" level="INFO">${Total_} = ['Total:', 'Rupees', '394']</msg>
+<var>${Total_}</var>
+<arg>${Total_}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.543900" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:46.544896" level="INFO">${Total_} = 394</msg>
+<var>${Total_}</var>
+<arg>${Total_[-1]}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.543900" elapsed="0.000996"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2024-02-07T16:00:46.544896" level="INFO">${Total_} = 394</msg>
+<var>${Total_}</var>
+<arg>${Total_}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.544896" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${T}</arg>
+<arg>${Total_}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.544896" elapsed="0.000998"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:46.492024" elapsed="0.053870"/>
+</kw>
+<kw name="Fill Payement Form" owner="page_panier">
+<kw name="Select Frame" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:46.546891" level="INFO">Selecting frame 'stripe_checkout_app'.</msg>
+<arg>stripe_checkout_app</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.546891" elapsed="0.025931"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Email_Field}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-07T16:00:46.572822" elapsed="0.481142"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:47.054990" level="INFO">Typing text 'test@test.com' into text field 'id:email'.</msg>
+<arg>${Email_Field}</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:47.054990" elapsed="0.090740"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:47.147724" level="INFO">Sending key(s) ('4242424242424242',) to id:card_number element.</msg>
+<msg time="2024-02-07T16:00:47.585123" level="INFO">Sending keys 4242424242424242</msg>
+<arg>${Card_Num_Field}</arg>
+<arg>${CARD_NUM}</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-02-07T16:00:47.146727" elapsed="0.518096"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:47.665820" level="INFO">Sending key(s) ('12/24',) to id:cc-exp element.</msg>
+<msg time="2024-02-07T16:00:47.970896" level="INFO">Sending keys 12/24</msg>
+<arg>${CC_EXP_Field}</arg>
+<arg>${CC_EXP}</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-02-07T16:00:47.664823" elapsed="0.329421"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:47.994244" level="INFO">Typing text '123' into text field 'id:cc-csc'.</msg>
+<arg>${CC_SCC_Field}</arg>
+<arg>${CC_SCC}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:47.994244" elapsed="0.075612"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:48.069991" level="INFO">Typing text '75001' into text field 'id:billing-zip'.</msg>
+<arg>${ZIPCODE_Field}</arg>
+<arg>${ZIPCODE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:48.069991" elapsed="0.096098"/>
+</kw>
+<kw name="Submit Form" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:48.167127" level="INFO">Submitting form 'None'.</msg>
+<doc>Submits a form identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:48.166089" elapsed="0.026946"/>
+</kw>
+<kw name="Unselect Frame" owner="SeleniumLibrary">
+<doc>Sets the main frame as the current frame.</doc>
+<status status="PASS" start="2024-02-07T16:00:48.193035" elapsed="0.001995"/>
+</kw>
+<arg>${EMAIL}</arg>
+<arg>${CARD_NUM}</arg>
+<arg>${CC_EXP}</arg>
+<arg>${CC_SCC}</arg>
+<arg>${ZIPCODE}</arg>
+<status status="PASS" start="2024-02-07T16:00:46.545894" elapsed="1.649136"/>
+</kw>
+<kw name="Verify Success Message" owner="page_confirmation">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>PAYMENT SUCCESS</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-02-07T16:00:48.196028" elapsed="3.333308"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:51.544912" level="INFO">Element 'xpath://p[@class='text-justify']' contains text 'Your payment was successful. You should receive a follow-up call from our sales team.'.</msg>
+<arg>${SUCCESS_MSG}</arg>
+<arg>${Expected_Success_Msg}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2024-02-07T16:00:51.529336" elapsed="0.016600"/>
+</kw>
+<arg>${Expected_Success_Msg}</arg>
+<status status="PASS" start="2024-02-07T16:00:48.196028" elapsed="3.349908"/>
+</kw>
+<kw name="Teardown" owner="common">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-07T16:00:51.545936" elapsed="2.194967"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:51.545936" elapsed="2.195702"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:40.249758" elapsed="13.493872"/>
+</test>
+<test id="s1-t2" name="TC2 - Test de bout en bout achat des 2 produits les plus chers" line="44">
+<kw name="Setup Test" owner="common">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:53.750642" level="INFO">Opening browser 'Edge' to base url 'https://weathershopper.pythonanywhere.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-02-07T16:00:53.749646" elapsed="2.951856"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-02-07T16:00:56.701502" elapsed="0.122455"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:53.748614" elapsed="3.076373"/>
+</kw>
+<kw name="Go To Product Page" owner="page_accueil">
+<kw name="Get temperature" owner="page_accueil">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:56.862229" level="INFO">${T} = 17 ℃</msg>
+<var>${T}</var>
+<arg>${Temperature}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:56.826952" elapsed="0.035277"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:56.863221" level="INFO">@{T} = [ 17 | ℃ ]</msg>
+<var>@{T}</var>
+<arg>${T}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:56.863221" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${T}[0]</value>
+<status status="PASS" start="2024-02-07T16:00:56.863221" elapsed="0.000000"/>
+</return>
+<msg time="2024-02-07T16:00:56.863221" level="INFO">${T} = 17</msg>
+<var>${T}</var>
+<status status="PASS" start="2024-02-07T16:00:56.825952" elapsed="0.037269"/>
+</kw>
+<if>
+<branch type="IF" condition="${T} &lt; 19">
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-02-07T16:00:56.863221" level="INFO">@{produit} = [ ALOE | ALMOND ]</msg>
+<var>@{produit}</var>
+<arg>ALOE</arg>
+<arg>ALMOND</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-02-07T16:00:56.863221" elapsed="0.001032"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:56.864381" level="INFO">Clicking element 'xpath://button[text()='Buy moisturizers']'.</msg>
+<arg>${Moisturizer_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:56.864253" elapsed="0.956824"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:56.863221" elapsed="0.958791"/>
+</branch>
+<branch type="ELSE IF" condition="${T} &gt; 34">
+<kw name="Create List" owner="BuiltIn">
+<var>@{produit}</var>
+<arg>SPF-30</arg>
+<arg>SPF-50</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" start="2024-02-07T16:00:57.822012" elapsed="0.000000"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>${Sunscreen_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-02-07T16:00:57.822012" elapsed="0.000000"/>
+</kw>
+<status status="NOT RUN" start="2024-02-07T16:00:57.822012" elapsed="0.000000"/>
+</branch>
+<status status="PASS" start="2024-02-07T16:00:56.863221" elapsed="0.959790"/>
+</if>
+<return>
+<value>@{produit}</value>
+<status status="PASS" start="2024-02-07T16:00:57.823011" elapsed="0.000000"/>
+</return>
+<msg time="2024-02-07T16:00:57.823326" level="INFO">@{produit} = [ ALOE | ALMOND ]</msg>
+<var>@{produit}</var>
+<status status="PASS" start="2024-02-07T16:00:56.825952" elapsed="0.997374"/>
+</kw>
+<kw name="Add Most Expensive Product" owner="page_produits">
+<for flavor="IN">
+<iter>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-02-07T16:00:57.825999" level="INFO">${Liste_prix} = []</msg>
+<var>${Liste_prix}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.825999" elapsed="0.000000"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.845728" level="INFO">@{Liste_WE} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_21")&gt; | &lt;selenium.webdriver.remote.webelement.WebEleme...</msg>
+<var>@{Liste_WE}</var>
+<arg>//p[contains(translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'), '${i}')]/following-sibling::p</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.826997" elapsed="0.018731"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.852709" level="INFO">${prix} = Price: Rs. 365</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.845728" elapsed="0.006981"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:57.853916" level="INFO">${prix} = ['Price:', 'Rs.', '365']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.853739" elapsed="0.000177"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.853916" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_21")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:57.845728" elapsed="0.008188"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.861685" level="INFO">${prix} = Price: Rs. 299</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.853916" elapsed="0.007769"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:57.861685" level="INFO">${prix} = ['Price:', 'Rs.', '299']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.861685" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.861685" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_22")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:57.853916" elapsed="0.007769"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.868386" level="INFO">${prix} = Price: 216</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.861685" elapsed="0.006701"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:57.869384" level="INFO">${prix} = ['Price:', '216']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.868386" elapsed="0.000998"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.869384" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_23")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:57.861685" elapsed="0.007699"/>
+</iter>
+<var>${we}</var>
+<value>@{Liste_WE}</value>
+<status status="PASS" start="2024-02-07T16:00:57.845728" elapsed="0.023656"/>
+</for>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:57.869384" level="INFO">${prix_min} = 365</msg>
+<var>${prix_min}</var>
+<arg>max(${Liste_prix})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.869384" elapsed="0.000000"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.870380" level="INFO">Clicking element '//button[contains(@onclick, 365)]'.</msg>
+<arg>//button[contains(@onclick, ${prix_min})]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.869384" elapsed="0.034446"/>
+</kw>
+<var name="${i}">ALOE</var>
+<status status="PASS" start="2024-02-07T16:00:57.825999" elapsed="0.077831"/>
+</iter>
+<iter>
+<kw name="Create List" owner="BuiltIn">
+<msg time="2024-02-07T16:00:57.904158" level="INFO">${Liste_prix} = []</msg>
+<var>${Liste_prix}</var>
+<doc>Returns a list containing given items.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.904158" elapsed="0.000000"/>
+</kw>
+<kw name="Get WebElements" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.914896" level="INFO">@{Liste_WE} = [ &lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_25")&gt; | &lt;selenium.webdriver.remote.webelement.WebEleme...</msg>
+<var>@{Liste_WE}</var>
+<arg>//p[contains(translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'), '${i}')]/following-sibling::p</arg>
+<doc>Returns a list of WebElement objects matching the ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.904158" elapsed="0.010738"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.921852" level="INFO">${prix} = Price: Rs. 195</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.915893" elapsed="0.005959"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:57.921852" level="INFO">${prix} = ['Price:', 'Rs.', '195']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.921852" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.921852" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_25")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:57.914896" elapsed="0.006956"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.930828" level="INFO">${prix} = Price: 360</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.922849" elapsed="0.007979"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:57.930828" level="INFO">${prix} = ['Price:', '360']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.930828" elapsed="0.000000"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.931826" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_26")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:57.922849" elapsed="0.008977"/>
+</iter>
+<iter>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.937809" level="INFO">${prix} = Price: 128</msg>
+<var>${prix}</var>
+<arg>${we}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.931826" elapsed="0.005983"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:57.938806" level="INFO">${prix} = ['Price:', '128']</msg>
+<var>${prix}</var>
+<arg>${prix}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.937809" elapsed="0.000997"/>
+</kw>
+<kw name="Append To List" owner="Collections">
+<arg>${Liste_prix}</arg>
+<arg>${prix}[-1]</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.938806" elapsed="0.000000"/>
+</kw>
+<var name="${we}">&lt;selenium.webdriver.remote.webelement.WebElement (session="f3c5a475a9d716e7b88faf62b8045690", element="F67EFF5F969803124CCE0B36A139FEBC_element_27")&gt;</var>
+<status status="PASS" start="2024-02-07T16:00:57.931826" elapsed="0.006980"/>
+</iter>
+<var>${we}</var>
+<value>@{Liste_WE}</value>
+<status status="PASS" start="2024-02-07T16:00:57.914896" elapsed="0.023910"/>
+</for>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:57.938806" level="INFO">${prix_min} = 360</msg>
+<var>${prix_min}</var>
+<arg>max(${Liste_prix})</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.938806" elapsed="0.000000"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.939803" level="INFO">Clicking element '//button[contains(@onclick, 360)]'.</msg>
+<arg>//button[contains(@onclick, ${prix_min})]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.938806" elapsed="0.032510"/>
+</kw>
+<var name="${i}">ALMOND</var>
+<status status="PASS" start="2024-02-07T16:00:57.904158" elapsed="0.067158"/>
+</iter>
+<var>${i}</var>
+<value>@{produits}</value>
+<status status="PASS" start="2024-02-07T16:00:57.825025" elapsed="0.146291"/>
+</for>
+<arg>@{produit}</arg>
+<status status="PASS" start="2024-02-07T16:00:57.825025" elapsed="0.146291"/>
+</kw>
+<kw name="Click Cart Button" owner="page_produits">
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:57.972314" level="INFO">Clicking element 'xpath://button[contains(@onclick, 'goToCart()')]'.</msg>
+<arg>${Cart_BTN}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:57.971316" elapsed="0.163728"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:57.971316" elapsed="0.163728"/>
+</kw>
+<kw name="Click Pay With Card" owner="page_panier">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Pay_With_Card}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-07T16:00:58.136040" elapsed="0.951240"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.088275" level="INFO">Clicking element 'xpath://span[contains(text(), 'Pay with Card')]'.</msg>
+<arg>${Pay_With_Card}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.088275" elapsed="0.053961"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:58.136040" elapsed="1.006196"/>
+</kw>
+<kw name="Verify Total" owner="page_panier">
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.161230" level="INFO">${Prix1} = 365</msg>
+<var>${Prix1}</var>
+<arg>${Price_P1}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.143225" elapsed="0.018005"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2024-02-07T16:00:59.161230" level="INFO">${Prix1} = 365</msg>
+<var>${Prix1}</var>
+<arg>${Prix1}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.161230" elapsed="0.000000"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.177995" level="INFO">${Prix2} = 360</msg>
+<var>${Prix2}</var>
+<arg>${Price_P2}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.161230" elapsed="0.016765"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2024-02-07T16:00:59.177995" level="INFO">${Prix2} = 360</msg>
+<var>${Prix2}</var>
+<arg>${Prix2}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.177995" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:59.179013" level="INFO">${T} = 725</msg>
+<var>${T}</var>
+<arg>${Prix1}+${Prix2}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.177995" elapsed="0.001018"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.197009" level="INFO">${Total_} = Total: Rupees 725</msg>
+<var>${Total_}</var>
+<arg>${Total}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.179013" elapsed="0.017996"/>
+</kw>
+<kw name="Split String" owner="String">
+<msg time="2024-02-07T16:00:59.197009" level="INFO">${Total_} = ['Total:', 'Rupees', '725']</msg>
+<var>${Total_}</var>
+<arg>${Total_}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.197009" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-02-07T16:00:59.198044" level="INFO">${Total_} = 725</msg>
+<var>${Total_}</var>
+<arg>${Total_[-1]}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.198000" elapsed="0.000044"/>
+</kw>
+<kw name="Convert To Integer" owner="BuiltIn">
+<msg time="2024-02-07T16:00:59.198044" level="INFO">${Total_} = 725</msg>
+<var>${Total_}</var>
+<arg>${Total_}</arg>
+<doc>Converts the given item to an integer number.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.198044" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${T}</arg>
+<arg>${Total_}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.199102" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:59.143225" elapsed="0.055877"/>
+</kw>
+<kw name="Fill Payement Form" owner="page_panier">
+<kw name="Select Frame" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.199995" level="INFO">Selecting frame 'stripe_checkout_app'.</msg>
+<arg>stripe_checkout_app</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.199995" elapsed="0.030917"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${Email_Field}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.231911" elapsed="0.471248"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.703159" level="INFO">Typing text 'test@test.com' into text field 'id:email'.</msg>
+<arg>${Email_Field}</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.703159" elapsed="0.097775"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:00:59.800934" level="INFO">Sending key(s) ('4242424242424242',) to id:card_number element.</msg>
+<msg time="2024-02-07T16:01:00.213326" level="INFO">Sending keys 4242424242424242</msg>
+<arg>${Card_Num_Field}</arg>
+<arg>${CARD_NUM}</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-02-07T16:00:59.800934" elapsed="0.522776"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:01:00.324707" level="INFO">Sending key(s) ('12/24',) to id:cc-exp element.</msg>
+<msg time="2024-02-07T16:01:00.648819" level="INFO">Sending keys 12/24</msg>
+<arg>${CC_EXP_Field}</arg>
+<arg>${CC_EXP}</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-02-07T16:01:00.323710" elapsed="0.358067"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:01:00.682776" level="INFO">Typing text '123' into text field 'id:cc-csc'.</msg>
+<arg>${CC_SCC_Field}</arg>
+<arg>${CC_SCC}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:01:00.681777" elapsed="0.102056"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:01:00.784829" level="INFO">Typing text '75001' into text field 'id:billing-zip'.</msg>
+<arg>${ZIPCODE_Field}</arg>
+<arg>${ZIPCODE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:01:00.784516" elapsed="0.091369"/>
+</kw>
+<kw name="Submit Form" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:01:00.875885" level="INFO">Submitting form 'None'.</msg>
+<doc>Submits a form identified by ``locator``.</doc>
+<status status="PASS" start="2024-02-07T16:01:00.875885" elapsed="0.054286"/>
+</kw>
+<kw name="Unselect Frame" owner="SeleniumLibrary">
+<doc>Sets the main frame as the current frame.</doc>
+<status status="PASS" start="2024-02-07T16:01:00.930171" elapsed="0.001995"/>
+</kw>
+<arg>${EMAIL}</arg>
+<arg>${CARD_NUM}</arg>
+<arg>${CC_EXP}</arg>
+<arg>${CC_SCC}</arg>
+<arg>${ZIPCODE}</arg>
+<status status="PASS" start="2024-02-07T16:00:59.199995" elapsed="1.733169"/>
+</kw>
+<kw name="Verify Success Message" owner="page_confirmation">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>PAYMENT SUCCESS</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-02-07T16:01:00.934161" elapsed="3.381864"/>
+</kw>
+<kw name="Element Should Contain" owner="SeleniumLibrary">
+<msg time="2024-02-07T16:01:04.332518" level="INFO">Element 'xpath://p[@class='text-justify']' contains text 'Your payment was successful. You should receive a follow-up call from our sales team.'.</msg>
+<arg>${SUCCESS_MSG}</arg>
+<arg>${Expected_Success_Msg}</arg>
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<status status="PASS" start="2024-02-07T16:01:04.316025" elapsed="0.016493"/>
+</kw>
+<arg>${Expected_Success_Msg}</arg>
+<status status="PASS" start="2024-02-07T16:01:00.933164" elapsed="3.399354"/>
+</kw>
+<kw name="Teardown" owner="common">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-02-07T16:01:04.333546" elapsed="2.175792"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:01:04.332518" elapsed="2.176820"/>
+</kw>
+<status status="PASS" start="2024-02-07T16:00:53.746616" elapsed="12.765719"/>
+</test>
+<status status="PASS" start="2024-02-07T16:00:40.022572" elapsed="26.494657"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Test Bout En Bout">Test Bout En Bout</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

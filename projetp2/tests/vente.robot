@@ -92,10 +92,15 @@ verification du montant
     ${total_number} =    Convert To Number    ${total_number}
     Should Be Equal As Numbers    ${sum}    ${total_number}
 carte number
-    #${card_number} =    Set Variable    4242 4242 4242 4242
-    FOR    ${i}    IN RANGE    4 
-        Input Text    locator=//*[@id="card_number"]    text=4242    clear=${False}
-        Sleep    2s
+    # ${card_number} =    Set Variable    4242 4242 4242 4242
+    # ${cc}=    Split String    ${card_number}
+    # FOR    ${i}    IN RANGE    4 
+    #     Input Text    locator=//*[@id="card_number"]    text=4242    clear=${False}
+    #     Sleep    1s
+    # END
+    FOR    ${i}    IN RANGE    4  
+        Press Keys    //*[@id="card_number"]    \\4\\2\\4\\2
+        Sleep    1s
     END
 date expiration
     Input Text    id=cc-exp    ${month}    clear=${False}

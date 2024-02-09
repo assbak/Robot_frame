@@ -1,6 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
-
+Library    String
 *** Variables ***
 ${Price_P1}           xpath://tbody/tr[1]/td[2]
 ${Price_P2}           xpath://tbody/tr[2]/td[2]
